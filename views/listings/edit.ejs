@@ -9,7 +9,7 @@
 </head>
 <body>
   <h3>Edit your Listing</h3>
-  <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation">
+  <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
     <div class="mb-3">
       <label for="title" class="form-label">Title</label>
       <input
@@ -24,23 +24,23 @@
     </div>
     <div class="mb-3">
       <label for="description" class="form-label">Description</label>
-      <textarea name="listing[description]" class="form-control" required><%="listing.description" %>
+      <textarea name="listing[description]" class="form-control" required><%=listing.description %>
   </textarea>
 <div class="invalid-feedback">Please enter a short description</div>
 
-    </div>
-    <div class="mb-3">
-      <label for="image" class="form-label">Image Link</label>
-      <input
-        name="listing[image]"
-        class="form-control"
-        value="<%= listing.image %>"
-        type="text"
-        required
-      />
-      <div class="invalid-feedback">Please enter a valid Link for Image</div>
+<div class="mb-3">
+  Original Listing Image <br>
+  <img src="<%= originalImageUrl %>">
+</div>
 
     </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">Upload New Image</label>
+      <input
+        name="listing[image]"
+        type="file"
+        class="form-control"/>
+      </div>
     <div class="row">
       <div class="mb-3 col-md-4">
         <label for="price" class="form-label">Price</label>
